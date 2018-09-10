@@ -13,34 +13,27 @@ define('APP_PATH', BASE_PATH . '/app');
 // Register an autoloader
 $loader = new Loader();
 $loader->registerDirs([
-        APP_PATH . '/controllers/',
-        APP_PATH . '/models/',
-    ]
-);
-$loader->register();
+    APP_PATH . '/controllers/',
+    APP_PATH . '/models/',
+])->register();
 
 // Create a DI
 $di = new FactoryDefault();
 
 // Setup the view component
-$di->set(
-    'view',
-    function () {
-        $view = new View();
-        $view->setViewsDir(APP_PATH . '/views/');
-        return $view;
-    }
-);
+$di->set('view', function () {
+    $view = new View();
+    $view->setLayoutsDir(APP_PATH . '/layouts/');
+    $view->setViewsDir(APP_PATH . '/views/');
+    return $view;
+});
 
 // Setup a base URI
-$di->set(
-    'url',
-    function () {
-        $url = new UrlProvider();
-        $url->setBaseUri('/');
-        return $url;
-    }
-);
+$di->set('url', function () {
+    $url = new UrlProvider();
+    $url->setBaseUri('/');
+    return $url;
+});
 
 $application = new Application($di);
 

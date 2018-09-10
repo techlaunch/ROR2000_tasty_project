@@ -6,11 +6,7 @@ class LoginController extends Controller
 {
     public function indexAction() {
         $error = $this->request->get('error');
-
         $this->view->error = $error;
-    }
-
-    public function forgotAction() {
     }
 
     public function submitAction() {
@@ -20,9 +16,23 @@ class LoginController extends Controller
 
         // check if data is ok
         if($username=="salvi" && $password=="1234") {
-            $this->response->redirect('/');
+            // TODO create the sesison
+            //...
+
+            // redirect to the admin 
+            $this->response->redirect('/admin');
         } else {
-            $this->response->redirect('/login/index?error=Wrong username or Password');
+            // redirect to login with error
+            $this->response->redirect('/login/index?error=1');
         }
+    }
+
+    public function logoutAction()
+    {
+        // TODO close session
+        // ...
+
+        // redirect to login page
+        $this->response->redirect('/login');
     }
 }

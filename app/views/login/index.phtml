@@ -1,14 +1,17 @@
-<h1>Login</h1>
-<p>Insert username and password</p>
-
 <?php if($error) { ?>
-    <div style="background-color: red; margin:10px;"><?= $error ?></div>
+    <div class="alert alert-danger" role="alert">Wrong username or Password</div>
 <?php } ?>
 
-<form action="/login/submit" method="get">
-    <input type="text" name="username" placeholder="Username"/><br/>
-    <input type="password" name="password" placeholder="Password"/><br/>
+<form action="/login/submit" method="post">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" class="form-control" id="username">
+    </div>
 
-    <input type="submit" value="Login"/>
-    <a href="/login/forgot">Forgot Password?</a>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password">
+    </div>
+
+    <input class="btn btn-primary" type="submit" value="Login" />
 </form>
