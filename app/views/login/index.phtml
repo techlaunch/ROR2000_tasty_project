@@ -1,0 +1,14 @@
+<h1>Login</h1>
+<p>Insert username and password</p>
+
+<?php if($error) { ?>
+    <div style="background-color: red; margin:10px;"><?= $error ?></div>
+<?php } ?>
+
+<form action="/login/submit" method="get">
+    <input type="text" name="username" placeholder="Username"/><br/>
+    <input type="password" name="password" placeholder="Password"/><br/>
+
+    <input type="submit" value="Login"/>
+    <a href="/login/forgot">Forgot Password?</a>
+</form>
