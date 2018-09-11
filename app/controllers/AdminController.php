@@ -24,8 +24,13 @@ class AdminController extends Controller
 		$this->view->disable();
     }
 
-    public function recipesAction() 
+    public function recipesAction()
     {
+        // get the recipe from the database
+        $recipes = Recipe::find();
+
+        // passing information to the view
+        $this->view->recipes = $recipes;
         $this->view->title = "List of recipes";
     }
 
@@ -36,8 +41,19 @@ class AdminController extends Controller
 
     public function addSubmitAction() 
     {
-        // TODO add recipe to the database
-        // ...
+        // get params from the url
+        $name = $this->request->get('name');
+        $time = $this->request->get('time');
+        $ingredients = $this->request->get('ingredients');
+        $instructions = $this->request->get('instructions');
+
+        // add recipe to the database
+        $recipe = new Recipe();
+        $recipe->name = $name;
+        $recipe->time = $time;
+        $recipe->ingredients = $ingredients;
+        $recipe->instructions = $instructions;
+        $recipe->create();
 
         // redirect to the list of recipes
         $this->response->redirect('/admin/recipes');

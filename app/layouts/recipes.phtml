@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?= $title ?> | Tasty Home</title>
+    <title>Tasty Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -15,17 +14,13 @@
             <!--navbar -->
             <div class="col-sm-12">
                 <nav class="navbar navbar-dark bg-dark">
-                    <a class="navbar-brand" href="/index">TASTY.APP</a>
+                    <a class="navbar-brand" href="/recipes">TASTY.APP (Home)</a>
                     <a class="navbar-brand" href="/login">Login</a>
                 </nav>
             </div>
         </div>
-        <div class="row">
-            <!--content -->
-            <div class="col-sm-12 col-md-12 padding">
-                <h1>Home</h1> 
-            </div>
-        </div>
+
+        <!--content -->
         <?= $this->getContent() ?>
     </div>
 </body>

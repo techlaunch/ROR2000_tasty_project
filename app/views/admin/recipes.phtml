@@ -7,15 +7,12 @@
     </tr>
 </thead>
 <tbody>
+    <?php foreach ($recipes as $recipe) { ?>
     <tr>
-        <td>Arroz con pollo</td>
-        <td>1:00h</td>
-        <td>Rice, Chicken, Bijol</td>
+        <td><?= $recipe->name ?></td>
+        <td><?= $recipe->time ?></td>
+        <td><?= $recipe->ingredients ?></td>
     </tr>
-    <tr>
-        <td>Fried Rice</td>
-        <td>1:30h</td>
-        <td>Rice, Shrimp, Onions, Peper, Eggs, Ham, Chinese beans, Garlic, Soy Souce</td>
-    </tr>
+    <?php } ?>
 </tbody>
 </table>

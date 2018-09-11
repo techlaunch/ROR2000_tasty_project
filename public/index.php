@@ -6,6 +6,7 @@ use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Url as UrlProvider;
 use Phalcon\Session\Adapter\Files as Session;
+use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 
 // Define some absolute path constants to aid in locating resources
 define('BASE_PATH', dirname(__DIR__));
@@ -34,6 +35,16 @@ $di->set('url', function () {
     $url = new UrlProvider();
     $url->setBaseUri('/');
     return $url;
+});
+
+// Setup the database service
+$di->set('db', function () {
+    return new DbAdapter([
+        'host'     => '127.0.0.1',
+        'username' => 'root',
+        'password' => 'root',
+        'dbname'   => 'tasty',
+    ]);
 });
 
 // start the session

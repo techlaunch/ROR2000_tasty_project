@@ -1,17 +1,27 @@
 <form action="/admin/addSubmit" method="post">
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name">
+        <input type="text" class="form-control" id="name" name="name" required/>
     </div>
 
     <div class="form-group">
         <label for="time">Cooking time</label>
-        <input type="number" class="form-control" id="time">
+        <input type="number" class="form-control" id="time" name="time" required/>
+    </div>
+
+    <div class="form-group">
+        <label for="picture">Picture</label>
+        <input type="url" class="form-control" id="picture" name="picture" required/>
     </div>
 
     <div class="form-group">
         <label for="ingredients">Ingredients</label>
-        <textarea class="form-control" id="ingredients" placeholder="Enter a comma separated list of ingredients" rows="3"></textarea>
+        <textarea class="form-control" id="ingredients" name="ingredients" placeholder="Enter a comma separated list of ingredients" rows="3" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="instructions">Instructions</label>
+        <textarea class="form-control" id="instructions" name="instructions" rows="3" required></textarea>
     </div>
 
     <input class="btn btn-primary" type="submit" value="Add" />

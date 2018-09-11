@@ -1,0 +1,21 @@
+<div style="height: 100vh; background-image: url(<?= $recipe->picture ?>); background-size: cover;">
+    <div class = "container">
+        <div class = "row" style="background: #ccc; width: 50%; padding: 40px 5px 20px 20px; opacity: .8;">
+
+            <div><h1 style="text-align: left;"><?= $recipe->name ?></h1><span style="text-align: right; color: #fff; font-size: 3rem;"><?= $recipe->time ?></span></div>
+        </div>
+        <div class="row" style="background: #ccc; width: 50%; height: 100%; margin-top: 60px; padding: 40px 5px 20px 20px; opacity: .8;">
+            <p style="padding: 40px 5px 20px 20px; opacity: .8; font-size: 40px;">
+                Ingredients:
+            
+                <span style="font-size: 30px;"><?= $recipe->ingredients ?></span>
+            </p>
+        </div>
+        <div class="row" style="background: #ccc; width: 50%; height: 100%; margin-top: 60px; padding: 40px 5px 20px 20px; opacity: .8;">
+            <p style="padding: 40px 5px 20px 20px; opacity: .8; font-size: 40px;">
+                Instructions:
+                <span style="font-size: 30px;"><?= $recipe->instructions ?></span>
+            </p>
+        </div>
+    </div>
+</div>
