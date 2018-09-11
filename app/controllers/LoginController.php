@@ -16,8 +16,12 @@ class LoginController extends Controller
 
         // check if data is ok
         if($username=="salvi" && $password=="1234") {
-            // TODO create the sesison
-            //...
+            // create the session
+            $user = new stdClass();
+            $user->name = "Salvi";
+            $user->email = "salvi@techlaunch.io";
+            $user->picture = "http://www.cubaenmiami.com/wp-content/uploads/2016/08/salvi-pascual.jpg";
+            $this->session->set('user', $user);
 
             // redirect to the admin 
             $this->response->redirect('/admin');
@@ -29,8 +33,8 @@ class LoginController extends Controller
 
     public function logoutAction()
     {
-        // TODO close session
-        // ...
+        // close session
+        $this->session->destroy();
 
         // redirect to login page
         $this->response->redirect('/login');

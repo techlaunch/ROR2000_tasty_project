@@ -5,6 +5,7 @@ use Phalcon\Mvc\View;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Url as UrlProvider;
+use Phalcon\Session\Adapter\Files as Session;
 
 // Define some absolute path constants to aid in locating resources
 define('BASE_PATH', dirname(__DIR__));
@@ -33,6 +34,13 @@ $di->set('url', function () {
     $url = new UrlProvider();
     $url->setBaseUri('/');
     return $url;
+});
+
+// start the session
+$di->setShared('session', function () {
+    $session = new Session();
+    $session->start();
+    return $session;
 });
 
 $application = new Application($di);
