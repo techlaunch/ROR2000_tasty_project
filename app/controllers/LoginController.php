@@ -22,11 +22,11 @@ class LoginController extends Controller
         // check if data is ok
         if($user) {
             // create the session
-            $userObj = new stdClass();
-            $userObj->name = $user->name;
-            $userObj->email = $user->email;
-            $userObj->picture = $user->picture;
-            $this->session->set('user', $userObj);
+            $obj = new stdClass();
+            $obj->name = $user->name;
+            $obj->email = $user->email;
+            $obj->picture = $user->picture;
+            $this->session->set('user', $obj);
 
             // redirect to the admin
             $this->response->redirect('/admin');
