@@ -4,26 +4,31 @@ use Phalcon\Mvc\Controller;
 
 class LoginController extends Controller
 {
-    public function indexAction() {
+    public function indexAction() 
+    {
         $error = $this->request->get('error');
         $this->view->error = $error;
     }
 
-    public function submitAction() {
+    public function submitAction() 
+    {
         // get data from the URL
-        $username = $this->request->get('username');
-        $password = $this->request->get('password');
+        $email = $this->request->get('email');
+        $password = md5($this->request->get('password'));
+
+        // connect to the databas and pull the user
+        $user = User::findFirst("email='$email' AND password='$password'");
 
         // check if data is ok
-        if($username=="salvi" && $password=="1234") {
+        if($user) {
             // create the session
-            $user = new stdClass();
-            $user->name = "Salvi";
-            $user->email = "salvi@techlaunch.io";
-            $user->picture = "http://www.cubaenmiami.com/wp-content/uploads/2016/08/salvi-pascual.jpg";
-            $this->session->set('user', $user);
+            $userObj = new stdClass();
+            $userObj->name = $user->name;
+            $userObj->email = $user->email;
+            $userObj->picture = $user->picture;
+            $this->session->set('user', $userObj);
 
-            // redirect to the admin 
+            // redirect to the admin
             $this->response->redirect('/admin');
         } else {
             // redirect to login with error

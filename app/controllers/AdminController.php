@@ -9,13 +9,13 @@ class AdminController extends Controller
         // get the current page
         $this->view->page = basename($_SERVER['REQUEST_URI']);
 
-        // get the info for the person logged
-        $this->view->user = $this->session->get('user');
-
         // do not allow anymimous users
         if ( ! $this->session->has('user')) {
             $this->response->redirect('/login');
         }
+
+        // get the info for the person logged
+        $this->view->user = $this->session->get('user');
     }
 
     public function indexAction() 
