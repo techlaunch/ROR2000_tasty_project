@@ -10,18 +10,18 @@ class AdminController extends Controller
         $this->view->page = basename($_SERVER['REQUEST_URI']);
 
         // do not allow anymimous users
-        if ( !$this->session->has('user')) {
+        if ( ! $this->session->has('user')) {
             $this->response->redirect('/login');
         }
 
         // get the info for the person logged
-        $user = $this->session->get('user');
-        $this->view->user = $user;
+        $this->view->user = $this->session->get('user');
     }
 
     public function indexAction() 
     {
         $this->response->redirect('/admin/recipes');
+		$this->view->disable();
     }
 
     public function recipesAction()

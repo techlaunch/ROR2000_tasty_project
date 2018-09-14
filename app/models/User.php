@@ -10,5 +10,4 @@ class User extends Model
     public $password;
     public $picture;
     public $inserted;
-
 }
