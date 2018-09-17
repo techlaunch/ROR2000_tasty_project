@@ -20,11 +20,12 @@ class LoginController extends Controller
         
         // connect to the databas and pull the user
         $user = User::findFirst("email='$email' AND password='$password'");
-        
+
         // check if data is ok
         if($user) {
             // create the session
             $obj = new stdClass();
+            $obj->id = $user->id;
             $obj->name = $user->name;
             $obj->email = $user->email;
             $obj->picture = $user->picture;

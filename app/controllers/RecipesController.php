@@ -33,13 +33,4 @@ class RecipesController extends Controller
         // passing information to the view
         $this->view->recipe = $recipe;
     }
-
-    public function searchSubmitAction() {
-        // get data from the URL
-        $search = $this->request->get('search');
-
-        // search database
-
-        // redirect to the index 
-    }
 }
