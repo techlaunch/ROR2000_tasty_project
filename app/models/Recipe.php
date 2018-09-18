@@ -7,7 +7,7 @@ class Recipe extends Model
     public $id;
     public $name;
     public $time;
-    public $picture; // url of the image
+    public $picture; 
     public $ingredients;
     public $instructions;
     public $inserted;

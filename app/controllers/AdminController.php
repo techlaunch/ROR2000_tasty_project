@@ -60,7 +60,7 @@ class AdminController extends Controller
                 $picture = md5($file->getName() . time()) . "." . $file->getExtension ();
                 $file->moveTo($_SERVER['DOCUMENT_ROOT']  . "/img/" . $picture);
             }
-        }
+        } 
 
         // add recipe to the database
         $recipe = new Recipe();

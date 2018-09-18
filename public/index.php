@@ -42,7 +42,7 @@ $di->set('db', function () {
     return new DbAdapter([
         'host'     => '127.0.0.1',
         'username' => 'root',
-        'password' => 'root',
+        'password' => '',
         'dbname'   => 'tasty',
     ]);
 });
