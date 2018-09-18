@@ -45,36 +45,46 @@ class LoginController extends Controller
 
         if($this->request->isPost()) {
             $dataSent = $this->request->getPost();
+            $password = md5($dataSent["password"]);
+            $confirmpassword = md5($dataSent["confirmpassword"]);
 
-            $auser = new User();
-            $auser->name = $dataSent["name"];
-            $auser->email = $dataSent["email"];
-            $auser->password = md5($dataSent["password"]);
-            $auser->picture = $dataSent["picture"];
+            if($confirmpassword !== $password){
+                $message = "Please check that the passwords match.";
 
-            if(!$auser->picture){
-                $auser->picture = "http://1.bp.blogspot.com/-Kudj45DvQSk/VlfWVCpeGMI/AAAAAAAACbw/qbDKhTo0TNQ/s000/no_image.jpg";
+                // redirect to login page
+                $this->response->redirect('/login/signup&message=' . $message);
             }
-
-            $savedSuccessfully = $auser->save();
-
-            if($savedSuccessfully) {
-                // create the session
-                $obj = new stdClass();
-                $obj->name = $auser->name;
-                $obj->email = $auser->email;
-                $obj->picture = $auser->picture;
+            else{
+                $auser = new User();
+                $auser->name = $dataSent["name"];
+                $auser->email = $dataSent["email"];
+                $auser->password = $password;
                 
-                $this->session->set('user', $obj);
+                // save the image into the img directory
+                $picture = "no_image.jpg";
                 
-                // redirect to the admin
-                $this->response->redirect('/admin');
-            } else {
-                $messages = $auser->getMessages();
+                if ($this->request->hasFiles('picture')) {
+                    // save file to the directory and database
+                    foreach ($this->request->getUploadedFiles() as $file) {
+                        
+                        $picture = md5($file->getName() . time()) . "." . $file->getExtension ();
+                        $file->moveTo($_SERVER['DOCUMENT_ROOT']  . "/img/" . $picture);
+                    }
+                }
 
-                echo "Sorry, the following problems were generated: ";
-                foreach ($messages as $message) {
-                    echo "$message <br/>";
+                $auser->picture = $picture;
+
+                $savedSuccessfully = $auser->save();
+
+                if($savedSuccessfully) {
+                    // redirect to the admin
+                    $this->response->redirect('/admin');
+                } else {
+                    $messages = $auser->getMessages();
+                    echo "Sorry, the following problems were generated: ";
+                    foreach ($messages as $message) {
+                        echo "$message <br/>";
+                    }
                 }
             }
         } else {
